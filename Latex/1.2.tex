@@ -1,0 +1,1224 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[lithuanian]{babel}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{url}
+
+\title{Kvantiniai skaičiavimai}
+\author{Adrian Klimaševski}
+\date{2025 m. rugsėjis}
+
+\begin{document}
+
+\maketitle
+
+\section*{Tiesinės algebros elementai}
+
+\textbf{1.} Ar duoteji trys vektoriai yra tiesiškai nepriklausomi? Bet kuriuo atveju pagrįskite atsakymą konkrečiais skaičiavimais:
+
+
+\begin{align}
+\text{1)}\qquad
+\overrightarrow{v_1}=
+\begin{bmatrix}
+-4-5i \\
+4-i\\
+-5-3i\\
+4-3i
+\end{bmatrix}, \quad
+\overrightarrow{v_2}=
+\begin{bmatrix}
+-3+2i \\
+-5-5i\\
+-5+4i\\
+2+3i 
+\end{bmatrix}, \quad
+\overrightarrow{v_3}=
+\begin{bmatrix}
+2+i \\
+3+i\\
+-2-5i\\
+1-2i
+\end{bmatrix} \nonumber
+\end{align}
+
+
+% \textbf{Teiginys.}
+% Vektoriai yra tiesiškai nepriklausomi.
+
+% \textbf{Įrodymas.} Tarkime egzistuoja: $c_1\vec v_1 + c_2\vec v_2 + c_3\vec v_3=\vec 0$.
+
+% Matricinė forma:
+% \[
+% \begin{bmatrix}
+% -4-5i & -3+2i & 2+i\\[4pt]
+% 4-i   & -5-5i & 3+i\\[4pt]
+% -5-3i & -5+4i & -2-5i
+% \end{bmatrix}
+% \begin{bmatrix}c_1\\[2pt]c_2\\[2pt]c_3\end{bmatrix}
+% =
+% \begin{bmatrix}0\\[2pt]0\\[2pt]0\end{bmatrix}.
+% \]
+% Jeigu ta \(3\times3\) matrica turi nenulinį determinantą, tai lygties sistema turi tik trivialų sprendinį \(c_1=c_2=c_3=0\), kas reiškia, jog vektoriai yra tiesiškai nepriklausomi.
+
+% Determinantas:
+% % \[
+% % \det
+% % \begin{bmatrix}
+% % -4-5i & -3+2i & 2+i\\[4pt]
+% % 4-i   & -5-5i & 3+i\\[4pt]
+% % -5-3i & -5+4i & -2-5i
+% % \end{bmatrix}
+% % =80-206i \neq 0.
+% % \]
+
+
+% \[
+% A = \begin{bmatrix}
+% -4-5i & -3+2i & 2+i \\
+% 4-i & -5-5i & 3+i \\
+% -5-3i & -5+4i & -2-5i
+% \end{bmatrix}
+% \]
+
+% \begin{align*}
+% \det(A) &= (-4-5i)\cdot 
+% \begin{vmatrix}
+% -5-5i & 3+i \\
+% -5+4i & -2-5i
+% \end{vmatrix} \\
+% &\quad - (-3+2i)\cdot 
+% \begin{vmatrix}
+% 4-i & 3+i \\
+% -5-3i & -2-5i
+% \end{vmatrix} \\
+% &\quad + (2+i)\cdot 
+% \begin{vmatrix}
+% 4-i & -5-5i \\
+% -5-3i & -5+4i
+% \end{vmatrix}
+% =80-206i \neq 0.
+% \end{align*}
+
+
+% Kadangi determinantas nėra lygus nuliui, matrica yra invertuojama ir sistema turi tik trivialų sprendinį \(c_1=c_2=c_3=0\).
+
+% Iš to seka, kad \(\vec v_1,\vec v_2,\vec v_3\) yra tiesiškai nepriklausomi.
+
+\[
+A =
+\begin{bmatrix}
+-4-5i & -3+2i & 2+i\\
+4-i & -5-5i & 3+i\\
+-5-3i & -5+4i & -2-5i\\
+4-3i & 2+3i & 1-2i
+\end{bmatrix}
+\]
+
+\[
+\begin{bmatrix}
+4-i & -5-5i & 3+i\\
+-4-5i & -3+2i & 2+i\\
+-5-3i & -5+4i & -2-5i\\
+4-3i & 2+3i & 1-2i
+\end{bmatrix}
+\xrightarrow{R_2+R_1,\; 4R_3+5R_1,\; R_4-R_1}
+\begin{bmatrix}
+4-i & -5-5i & 3+i\\
+-6i & -8-3i & 5+2i\\
+-17i & -45-9i & 7-15i\\
+-2i & 7+8i & -2-3i
+\end{bmatrix}
+\]
+
+\[
+\begin{bmatrix}
+4-i & -5-5i & 3+i\\
+-2i & 7+8i & -2-3i\\
+-6i & -8-3i & 5+2i\\
+-17i & -45-9i & 7-15i
+\end{bmatrix}
+\xrightarrow{(-1)R_3 + 3R_2,\; (-2)R_4 + 17R_2}
+\begin{bmatrix}
+4-i & -5-5i & 3+i\\
+-2i & 7+8i & -2-3i\\
+0 & 29+27i & -11-11i\\
+0 & 209+154i & -48-21i
+\end{bmatrix}
+\]
+
+\[
+\begin{bmatrix}
+4-i & -5-5i & 3+i\\
+-2i & 7+8i & -2-3i\\
+0 & 29+27i & -11-11i\\
+0 & 209+154i & -48-21i
+\end{bmatrix}
+\xrightarrow{a_2 \leftrightarrow a_3,\; R_3 : (-11),\; R_4 : 3}
+\begin{bmatrix}
+4-i & 3+i & -5-5i\\
+-2i & -2-3i & 7+8i\\
+0 & 1+i & -\tfrac{29}{11}-\tfrac{27}{11}i\\
+0 & -16-7i & \tfrac{209}{3}+\tfrac{154}{3}i
+\end{bmatrix}
+\]
+
+\[
+\begin{bmatrix}
+4-i & 3+i & -5-5i\\
+-2i & -2-3i & 7+8i\\
+0 & 1+i & -\tfrac{29}{11}-\tfrac{27}{11}i\\
+0 & -16-7i & \tfrac{209}{3}+\tfrac{154}{3}i
+\end{bmatrix}
+\xrightarrow{R_4 + 16R_3}
+\begin{bmatrix}
+4-i & 3+i & -5-5i\\
+-2i & -2-3i & 7+8i\\
+0 & 1+i & -\tfrac{29}{11}-\tfrac{27}{11}i\\
+0 & 0 & 0
+\end{bmatrix}
+\]
+
+\[
+\Rightarrow \text{Rang}(A) = 3
+\]
+
+% \[
+% A =
+% \begin{cases}
+% (-4-5i)c_1 + (-3+2i)c_2 + (2+i)c_3 = 0,\\
+% (4-i)c_1 + (-5-5i)c_2 + (3+i)c_3 = 0,\\
+% (-5-3i)c_1 + (-5+4i)c_2 + (-2-5i)c_3 = 0,\\
+% (4-3i)c_1 + (2+3i)c_2 + (1-2i)c_3 = 0.
+% \end{cases}
+% \]
+
+\text{Atsakymas: Tiesiškai nepriklausomi, nes rangas lygus 3}
+
+
+
+
+
+
+\pagebreak
+
+
+\textbf{2.} Raskite  \(B^2+3A ^{\dag} C^{-2}+(A^{-1})^{\dag}  \)(pateikdami detalius skaičiavimus), jeigu:
+
+
+
+\begin{align}
+\text{1)}\qquad
+A =
+\begin{bmatrix}
+-5+6i & -6+5i \\
+7-6i & -4+3i
+\end{bmatrix}, \quad
+B=
+\begin{bmatrix}
+6+5i & 5-4i \\
+1-i & -8-3i
+\end{bmatrix}, \quad
+C=
+\begin{bmatrix}
+3-i & -3-5i \\
+3+i & 1-3i
+\end{bmatrix}
+ \nonumber
+\end{align}
+
+\text{Sprendimas:}
+
+\begin{equation}
+    B^2=
+    \begin{bmatrix}
+6+5i & 5-4i \\
+1-i & -8-3i
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+6+5i & 5-4i \\
+1-i & -8-3i
+\end{bmatrix}
+=\nonumber
+\end{equation}
+
+\begin{equation}
+=
+\begin{bmatrix}
+(6+5i)^2+(5-4i)(1-i) & (6+5i)(5-4i)+ (5-4i)(-8-3i)\\
+(1-i)(6+5i)+ (-8-3i)(1-i)& (1-i)(5-4i)+(-8-3i)^2
+\end{bmatrix}\nonumber
+\end{equation}
+
+\begin{equation}
+B^2=
+\begin{bmatrix}
+12+51i & -2+18i\\
+-4i & 56-39i\nonumber
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    (A^{-1})^{\dag}  = (A^{\dag})^{-1}\nonumber
+\end{equation}
+
+\begin{equation}
+    \overline{A}= 
+\begin{bmatrix}
+-5-6i & -6-5i \\
+7+6i & -4-3i
+\end{bmatrix}\nonumber
+\end{equation}
+
+\begin{equation}
+    A^\dag = 
+\begin{bmatrix}
+-5-6i & 7+6i\\
+ -6-5i & -4-3i
+\end{bmatrix}\nonumber
+\end{equation}
+
+
+
+\begin{equation}
+det(A^\dag)=(-5-6i)(-4-3i)-(7+6i)(-6-5i)=14-110i\nonumber
+\end{equation}
+
+\begin{equation}
+adj(A^\dag)=
+\begin{bmatrix}
+ -4-3i & -7-6i\\
+ 6+5i & -5-6i
+\end{bmatrix}\nonumber
+\end{equation}
+
+\begin{equation}
+    (A^{\dag})^{-1} = 
+    \frac{1}{14-110i}
+\begin{bmatrix}
+ -4-3i & -7-6i\\
+ 6+5i & -5-6i
+\end{bmatrix}\nonumber
+\end{equation}
+
+
+\begin{equation}
+    (C^{-2}) = (C^{-1})^{2}\nonumber
+\end{equation}
+
+\begin{equation}\nonumber
+det(C) =(3-i)(1-3i)-(-3-5i)(3+i)=4+8i
+\end{equation}
+
+\begin{equation}
+C^{-1}=\frac{1}{det(C)}
+\begin{bmatrix}
+    d & -b \\
+    -c & a 
+\end{bmatrix}
+=
+\frac{1}{4+8i}
+\begin{bmatrix}
+1-3i & 3+5i \\
+-3-i & 3-i
+\end{bmatrix}\nonumber
+\end{equation}
+
+\begin{equation}
+C^{-2}=
+\frac{1}{-48+64i}
+\begin{bmatrix}
+-12-24i & 32 +8i \\
+-16 +8i & 4 -24i
+\end{bmatrix}\nonumber
+\end{equation}
+
+
+\begin{equation}
+B^2+3A ^{\dag} C^{-2}+(A^{-1})^{\dag}=
+\begin{bmatrix}
+12+51i & -2+18i\\
+-4i & 56-39i
+\end{bmatrix}
++3
+\begin{bmatrix}
+-5-6i & 7+6i\\
+ -6-5i & -4-3i
+\end{bmatrix}
+\cdot\nonumber
+\end{equation}    
+
+
+\begin{equation}
+\cdot
+\frac{1}{-48+64i}
+\begin{bmatrix}
+-12-24i & 32 +8i \\
+-16 +8i & 4 -24i
+\end{bmatrix}
++
+\frac{1}{14-110i}
+\begin{bmatrix}
+ -4-3i & -7-6i\\
+ 6+5i & -5-6i
+\end{bmatrix}\nonumber
+\end{equation}   
+
+% \begin{equation}
+% \frac{1}{614800}
+% \begin{bmatrix}
+% (2205+5490i)\cdot 6148 + (137-241i)\cdot 100 & (-1463+2466i)\cdot 6148 + (281-427i)\cdot 100 \\
+% (570-1015i)\cdot 6148 + (-233+365i)\cdot 100 & (5768-2901i)\cdot 6148 + (295-317i)\cdot 100 \nonumber
+% \end{bmatrix}
+% \end{equation}
+
+\text{Atsakymas:}
+\begin{equation}
+\frac{1}{614800}
+\begin{bmatrix}
+13570040 + 33728420i & -8966424 + 15118268i \\
+3481060 - 6203720i & 35491164 - 17867048i\nonumber
+\end{bmatrix}
+\end{equation}
+
+
+
+
+
+
+\pagebreak 
+
+\textbf{3.} Užrašykite vektorių  \(\overrightarrow{v_1}\)  bazėje \{ \(\overrightarrow{v_2},\overrightarrow{v_3},\overrightarrow{v_4}\) \}.(Pateikite detalius skaičiavimus):
+
+\begin{align}
+\text{1)}\qquad
+\overrightarrow{v_1}=
+\begin{bmatrix}
+-2-4i\\
+3-3i\\
+-4+3i
+\end{bmatrix}, \quad
+\overrightarrow{v_2}=
+\begin{bmatrix}
+4+4i\\
+3-i\\
+3+i
+\end{bmatrix}, \quad
+\overrightarrow{v_3}=
+\begin{bmatrix}
+-5+2i\\
+-2+i\\
+3+4i
+\end{bmatrix}, \quad
+\overrightarrow{v_4}=
+\begin{bmatrix}
+4-5i \\
+-3-5i \\
+-5-i
+\end{bmatrix} \nonumber
+\end{align}
+
+\text{Sprendimas:}
+\begin{equation}
+\overrightarrow{v_1}=a\overrightarrow{v_2} + b\overrightarrow{v_3} + c\overrightarrow{v_4}\nonumber
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+4+4i & -5+2i & 4-5i & -2-4i\\ 
+3-i & -2+i & -3-5i & 3-3i\\
+3+i & 3+4i & -5-i & -4+3i\nonumber
+\end{array}
+\end{bmatrix}
+\xrightarrow{R_1\cdot\frac{1-i}{8}}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+3-i & -2+i & -3-5i & 3-3i\\
+3+i & 3+4i & -5-i & -4+3i\nonumber
+\end{array}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+3-i & -2+i & -3-5i & 3-3i\\
+3+i & 3+4i & -5-i & -4+3i\nonumber
+\end{array}
+\end{bmatrix}
+\xrightarrow{R_2-R_1(3-i),\quad R_3-R_1(3+i)}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & \frac{-7-8i}{4} & \frac{-6-7i}{4} & \frac{11-6i}{2}\\
+0 & \frac{20+7i}{4} & \frac{-23+10i}{4} & \frac{-4+9i}{2}\nonumber
+\end{array}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & \frac{-7-8i}{4} & \frac{-6-7i}{4} & \frac{11-6i}{2}\\
+0 & \frac{20+7i}{4} & \frac{-23+10i}{4} & \frac{-4+9i}{2}\nonumber
+\end{array}
+\end{bmatrix}
+\xrightarrow{R_2\cdot4,\quad R_3\cdot4}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & -7-8i & -6-7i & 22-12i\\
+0 & 20+7i & -23+10i & -8+18i\nonumber
+\end{array}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & -7-8i & -6-7i & 22-12i\\
+0 & 20+7i & -23+10i & -8+18i\nonumber
+\end{array}
+\end{bmatrix}
+\xrightarrow{R_2:(-7-8i)}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & 1 & \frac{98+i}{113} & \frac{-58+260i}{113}\\
+0 & 20+7i & -23+10i & -8+18i\nonumber
+\end{array}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & 1 & \frac{98+i}{113} & \frac{-58+260i}{113}\\
+0 & 20+7i & -23+10i & -8+18i\nonumber
+\end{array}
+\end{bmatrix}
+\xrightarrow{R_3-R_2\cdot(20+7i))}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & 1 & \frac{98+i}{113} & \frac{-58+260i}{113}\\
+0 & 0 & \frac{-4552+424i}{113} & \frac{2076-2760i}{113}\nonumber
+\end{array}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & 1 & \frac{98+i}{113} & \frac{-58+260i}{113}\\
+0 & 0 & \frac{-4552+424i}{113} & \frac{2076-2760i}{113}\nonumber
+\end{array}
+\end{bmatrix}
+\xrightarrow{R_3\cdot113}
+\begin{bmatrix}
+\begin{array}{ccc|c}
+1 & \frac{-3+7i}{8} & \frac{-1-9i}{8} & \frac{-3-i}{4}\\ 
+0 & 1 & \frac{98+i}{113} & \frac{-58+260i}{113}\\
+0 & 0 & -4552+424i & 2076-2760i\nonumber
+\end{array}
+\end{bmatrix}
+\end{equation}
+
+\text{Atsakymas:}
+
+\begin{equation}
+    c = \frac{3(173-230i)}{2(-569+53i)},\quad 
+    b = \frac{-58+260i}{113} - \frac{98+i}{113}c,\quad
+    a = \frac{-3-i}{4} - \frac{-3+7i}{8}b - \frac{-1-9i}{8}c
+    \nonumber
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+\pagebreak
+
+\textbf{4.} Iš bazės iš ankstesnio uždavinio gaukite ortonormuotą bazę naudodami Gramo-Šmidto procesą \url{https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process} ir normuodami gautus vektorius. Detaliai aprašykite kiekvieną žingsnį.
+
+
+\begin{equation}
+    proj_u(v)=\frac{\langle v,u \rangle}{\langle u,u \rangle}u, \quad u_1 = v_1\nonumber
+\end{equation}
+
+\begin{equation}
+    u_k=v_k-\sum j =1k-1{proj_u}_j(v_k)\nonumber
+\end{equation}
+
+\begin{equation}
+    \langle x,y \rangle = \sum_{k}x_k\overline{y_k}\nonumber
+\end{equation}
+
+\text{Sprendimas:}
+
+\begin{equation}
+u_1=
+\begin{bmatrix}
+-2-4i\\
+3-3i\\
+-4+3i
+\end{bmatrix}\nonumber
+\end{equation}
+
+\begin{equation}
+u_2=
+\begin{bmatrix}
+4+4i\\
+3-i\\
+3+i
+\end{bmatrix}\nonumber
+-
+\frac{\langle 
+\begin{bmatrix}
+4+4i\\
+3-i\\
+3+i
+\end{bmatrix}
+,
+\begin{bmatrix}
+-2-4i\\
+3-3i\\
+-4+3i
+\end{bmatrix}
+\rangle}{\langle 
+\begin{bmatrix}
+-2-4i\\
+3-3i\\
+-4+3i
+\end{bmatrix},\begin{bmatrix}
+-2-4i\\
+3-3i\\
+-4+3i
+\end{bmatrix}
+\rangle}
+\begin{bmatrix}
+-2-4i\\
+3-3i\\
+-4+3i
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    \langle u_1,u_1 \rangle =(-2-4i)\overline{(-2-4i)}+(3-3i)\overline{(3-3i)}+(-4+3i)\overline{(-4+3i)}=63\nonumber
+\end{equation}
+
+\begin{equation}
+    \langle v_2,u_1 \rangle =(4+4i)\overline{(-2-4i)}+(3-i)\overline{(3-3i)}+(3+i)\overline{(-4+3i)}=-21+i\nonumber
+\end{equation}
+
+\begin{equation}
+    \frac{\langle v_2,u_1 \rangle}{\langle u_1,u_1 \rangle}
+    = \frac{-21+i}{63}
+    = -\frac{1}{3} + \frac{i}{63} \nonumber
+\end{equation}
+
+\begin{equation}
+    proj_{u_1}(v_2)
+    =
+    (-\frac{1}{3} + \frac{i}{63}) 
+    \cdot
+\begin{bmatrix}
+    -2-4i\\
+    3-3i\\
+    -4+3i
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \frac{46}{63}+\frac{82}{63}i\\
+    -\frac{20}{21}+\frac{22}{21}i\\
+    \frac{9}{7}-\frac{67}{63}i
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+
+\begin{equation}
+    u_2 = 
+    v_2 - proj_{u_1}(v_2)
+    =
+\begin{bmatrix}
+    4+4i\\
+    3-i\\
+    3+i
+\end{bmatrix}
+-
+\begin{bmatrix}
+    \frac{46}{63}+\frac{82}{63}i\\
+    -\frac{20}{21}+\frac{22}{21}i\\
+    \frac{9}{7}-\frac{67}{63}i
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \frac{206+170i}{63}\\
+    \frac{249-129i}{63}\\
+    \frac{108+130i}{63}
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+\begin{equation}
+    \frac{\langle v_3,u_1 \rangle}{\langle u_1,u_1 \rangle}
+    = -\frac{1}{9}-\frac{52}{63}i\nonumber
+\end{equation}
+
+\begin{equation}
+    \frac{\langle v_3,u_2 \rangle}{\langle u_2, u_2 \rangle}
+    = -\frac{473}{2834}+\frac{1295}{2834}i\nonumber
+\end{equation}
+
+
+\begin{equation}
+u_3= v_3-\frac{\langle v_3,u_1 \rangle}{\langle u_1,u_1 \rangle}u_1 - \frac{\langle v_3,u_2 \rangle}{\langle u_2, u_2 \rangle}u_2
+=
+\begin{bmatrix}
+-5+2i\\
+-2+i\\
+3+4i
+\end{bmatrix}
+- (-\frac{1}{9}-\frac{52}{63}i\nonumber)
+\cdot
+\begin{bmatrix}
+-2-4i\\
+3-3i\\
+-4+3i
+\end{bmatrix}
+- (-\frac{473}{2834}+\frac{1295}{2834}i\nonumber)
+\cdot
+\begin{bmatrix}
+4+4i\\
+3-i\\
+3+i
+\end{bmatrix}
+\end{equation}
+
+
+\text{Atsakymas:}
+\begin{equation}
+u_1=
+\begin{bmatrix}
+-2-4i\\
+3-3i\\
+-4+3i
+\end{bmatrix}, \quad
+u_2=
+\begin{bmatrix}
+    \frac{206+170i}{63}\\
+    \frac{249-129i}{63}\\
+    \frac{108+130i}{63}
+\end{bmatrix}, \quad
+u_3 =
+\begin{bmatrix}
+-\frac{201}{1417}-\frac{1614}{1417}i\\
+\frac{756}{1417}+\frac{1410}{1417}i\\
+\frac{1854}{1417}+\frac{840}{1417}i\nonumber
+\end{bmatrix}
+\end{equation}
+
+\text{Pasitikrinimas:}
+
+\begin{equation}
+    u_1 \cdot u_2 = \frac{-1092-484i}{63} + \frac{1134-360i}{63} + \frac{-42+844i}{63} = \frac{0 + 0i}{63} = 0 \nonumber
+\end{equation}
+
+\begin{equation}
+    u_1 \cdot u_3 = \frac{6858-2424i}{1417} + \frac{-1962-6498i}{1417} - \frac{-4896+8922i}{1417} = \frac{0 + 0i}{1417} = 0 \nonumber
+\end{equation}
+
+
+\begin{equation}
+    u_1 \cdot u_3 = \frac{-315789+298314i}{63\cdot1417} + \frac{6354-448614i}{63\cdot1417} - \frac{309432+150300i}{63\cdot1417} = \frac{0 + 0i}{63\cdot1417} = 0 \nonumber
+\end{equation}
+
+\begin{equation}
+    u_1\cdot u_2 = 0, \quad u_1\cdot u_3 = 0,\quad u_2\cdot u_3 = 0 \nonumber
+\end{equation}
+
+
+
+
+
+
+
+\pagebreak
+
+
+
+\textbf{5.} Tikrinės reikšmės. Raskite matricos  A  tikrines reikšmes ir tirkrinius vektorius (detaliai pateikdami sprendimo žingsnius):
+
+\begin{align}
+\text{1)}\qquad
+A=
+\begin{bmatrix}
+-1 & 0 & 0 \\
+0 & -3i & 5 \\
+0 & -2 & i
+\end{bmatrix}
+\nonumber
+\end{align}
+
+Tikrinės reikšmės tenkina:
+\begin{equation}
+ det(A-\lambda I) = 0 \nonumber
+\end{equation}
+
+\begin{equation}
+A-\lambda I =
+    \begin{bmatrix}
+        -1-\lambda & 0 & 0 \\
+        0 & -3i-\lambda & 5 \\
+        0 & -2 & i-\lambda
+    \end{bmatrix}\nonumber
+\end{equation}
+
+\text{Sprendimas:}
+\begin{equation}
+\det(A - \lambda I) = (-1 - \lambda) \cdot \det\begin{bmatrix}
+-3i - \lambda & 5 \\
+-2 & i - \lambda\nonumber
+\end{bmatrix}
+\end{equation}
+
+\begin{align*}
+&\det\begin{bmatrix}
+-3i - \lambda & 5 \\
+-2 & i - \lambda
+\end{bmatrix} \\
+&= (-3i - \lambda)(i - \lambda) - (5)(-2) \\
+&= (-3i)(i) + (-3i)(-\lambda) + (-\lambda)(i) + (-\lambda)(-\lambda) + 10 \\
+&= 3 + 3i\lambda - i\lambda + \lambda^2 + 10 \\
+&= \lambda^2 + 2i\lambda + 13\nonumber
+\end{align*}
+
+\begin{equation}
+    det(A-\lambda I) = (-1-\lambda)(\lambda^2 + 2i\lambda + 13) = 0 \nonumber
+\end{equation}
+
+\begin{equation}
+    {\lambda}_1 = -1 \quad arba \quad
+    \lambda^2 + 2i\lambda + 13 = 0    \nonumber
+\end{equation}
+
+\begin{equation}
+    {\lambda}_{2,3} = \frac{-2i\pm 2\sqrt{14}i}{2} = -i \pm i \sqrt{14}  \nonumber
+\end{equation}
+
+Taigi, tikrinės reikšmės:
+\begin{equation}
+{\lambda}_1 = -1, \quad 
+{\lambda}_2 = -i + i \sqrt{14}, \quad
+{\lambda}_2 = -i - i \sqrt{14}\nonumber
+\end{equation}
+
+
+
+Toliau:
+
+\begin{equation}
+A-(-1)I = A + I =
+\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & -3i + 1 & 5 \\
+    0 & -2 & i + 1 \nonumber
+\end{bmatrix}
+\end{equation}
+
+\[
+(1 - 3i)\left(\frac{1 + i}{2}\right)x_3 + 5x_3 = 0
+\]
+
+\[
+\frac{4 - 2i}{2}x_3 + 5x_3 = (2 - i)x_3 + 5x_3 = (7 - i)x_3 = 0
+\]
+
+Kadangi $7 - i \neq 0$, todėl $x_3 = 0$, bei $x_2 = 0$, o $x_1$ laisvas.
+
+Taigi:
+\[
+\mathbf{v}_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}
+\]
+
+Toliau:
+
+$k_1 = \sqrt{14} - 1$, tai $\lambda_2 = ik_1$
+
+\[
+A - \lambda_2 I = 
+\begin{bmatrix}
+-1 - ik_1 & 0 & 0 \\
+0 & -3i - ik_1 & 5 \\
+0 & -2 & i - ik_1
+\end{bmatrix}
+\]
+
+\[
+-2x_2 + i(1 - k_1)\cdot\frac{i(3 + k_1)}{5}x_2 = 0
+\]
+
+\[
+-2x_2 + \frac{i^2(1 - k_1)(3 + k_1)}{5}x_2 = -2x_2 - \frac{(1 - k_1)(3 + k_1)}{5}x_2 = 0
+\]
+
+\[
+(1 - k_1)(3 + k_1)= 3 + k_1 - 3k_1 - k_1^2 = 3 - 2k_1 - k_1^2
+\]
+
+\[
+k_1^2 = (\sqrt{14} - 1)^2 = 14 - 2\sqrt{14} + 1 = 15 - 2\sqrt{14}
+\]
+
+\[
+3 - 2k_1 - k_1^2 = 3 - 2(\sqrt{14} - 1) - (15 - 2\sqrt{14}) = 3 - 2\sqrt{14} + 2 - 15 + 2\sqrt{14} = -10
+\]
+
+Todėl:
+\[
+-2x_2 - \frac{-10}{5}x_2 = -2x_2 + 2x_2 = 0
+\]
+
+$x_2$ laisvas. Pasirenkame $x_2 = 5$:
+\[
+x_3 = \frac{i(3 + k_1)}{5} \cdot 5 = i(3 + k_1) = i(3 + \sqrt{14} - 1) = i(\sqrt{14} + 2)
+\]
+
+Taigi:
+\[
+\mathbf{v}_2 = \begin{bmatrix} 0 \\ 5 \\ i(\sqrt{14} + 2) \end{bmatrix}
+\]
+
+Toliau:
+
+Tarkime $k_2 = 1 + \sqrt{14}$, tai $\lambda_3 = -ik_2$
+
+\[
+A - \lambda_3 I = 
+\begin{bmatrix}
+-1 + ik_2 & 0 & 0 \\
+0 & -3i + ik_2 & 5 \\
+0 & -2 & i + ik_2
+\end{bmatrix}
+\]
+
+\[
+-2x_2 + i(1 + k_2)\cdot\frac{-i(k_2 - 3)}{5}x_2 = 0
+\]
+
+\[
+-2x_2 + \frac{-i^2(1 + k_2)(k_2 - 3)}{5}x_2 = -2x_2 + \frac{(1 + k_2)(k_2 - 3)}{5}x_2 = 0
+\]
+
+\[
+(1 + k_2)(k_2 - 3) = (2 + \sqrt{14})(\sqrt{14} - 2) = 14 - 4 = 10
+\]
+
+Todėl:
+\[
+-2x_2 + \frac{10}{5}x_2 = -2x_2 + 2x_2 = 0
+\]
+
+$x_2$ laisvas. Pasirenkame $x_2 = 5$:
+\[
+x_3 = \frac{-i(k_2 - 3)}{5} \cdot 5 = -i(k_2 - 3) = -i(1 + \sqrt{14} - 3) = -i(\sqrt{14} - 2)
+\]
+
+Taigi:
+\[
+\mathbf{v}_3 = \begin{bmatrix} 0 \\ 5 \\ -i(\sqrt{14} - 2) \end{bmatrix}
+\]
+
+
+Tikrinės reikšmės:
+
+\[
+\lambda_1 = -1, \quad \lambda_2 = i(\sqrt{14} - 1), \quad \lambda_3 = -i(1 + \sqrt{14})
+\]
+
+Tikriniai vektoriai:
+\[
+{v}_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad
+{v}_2 = \begin{bmatrix} 0 \\ 5 \\ i(\sqrt{14} + 2) \end{bmatrix}, \quad
+{v}_3 = \begin{bmatrix} 0 \\ 5 \\ -i(\sqrt{14} - 2) \end{bmatrix}
+\]
+
+Patikrinimas:
+\[
+    Av_1 = 
+    \begin{bmatrix}
+-1 & 0 & 0 \\
+0 & -3i & 5 \\
+0 & -2 & i
+\end{bmatrix}
+\begin{bmatrix}
+    1 \\ 0 \\ 0
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    -1 \\ 0 \\ 0
+\end{bmatrix}
+\]
+\[
+    \lambda_1 v_1 = 
+-1 \cdot
+\begin{bmatrix}
+    1 \\ 0 \\ 0
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    -1 \\ 0 \\ 0
+\end{bmatrix}
+\]
+
+\[
+    Av_2 = 
+    \begin{bmatrix}
+-1 & 0 & 0 \\
+0 & -3i & 5 \\
+0 & -2 & i
+\end{bmatrix}
+\begin{bmatrix}
+    0 \\ 5 \\ i(\sqrt{14}+2)
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    0 \\ 5i(\sqrt{14}-1) \\ -12-\sqrt{14}
+\end{bmatrix}
+\]
+\[
+    \lambda_2 v_2 = 
+i(\sqrt{14}-1) \cdot
+\begin{bmatrix}
+    0 \\ 5 \\ i(\sqrt{14}+2)
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    0 \\ 5i(\sqrt{14}-1) \\ -12-\sqrt{14}
+\end{bmatrix}
+\]
+
+\[
+    Av_3 = 
+    \begin{bmatrix}
+-1 & 0 & 0 \\
+0 & -3i & 5 \\
+0 & -2 & i
+\end{bmatrix}
+\begin{bmatrix}
+    0 \\ 5 \\ -i(\sqrt{14}-2)
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    0 \\ -5i(1+\sqrt{14}) \\ -12+\sqrt{14}
+\end{bmatrix}
+\]
+\[
+    \lambda_3 v_3 = 
+-i(\sqrt{14}+1) \cdot
+\begin{bmatrix}
+    0 \\ 5 \\ -i(\sqrt{14}-2)
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    0 \\ -5i(1+\sqrt{14}) \\ -12+\sqrt{14}
+\end{bmatrix}
+\]
+
+% Taigi, tikriniai vektoriai:
+% \begin{equation}
+% v_1 =
+% \begin{bmatrix}
+% 1 \\
+% 0 \\
+% 0 \nonumber
+% \end{bmatrix}, \quad
+% v_2 =
+% \begin{bmatrix}
+% 1 \\
+% 5 \\
+% i(\sqrt{14}+2) \nonumber
+% \end{bmatrix}, \quad
+% v_3 =
+% \begin{bmatrix}
+% 0 \\
+% 5 \\
+% -i(\sqrt{14}-2) \nonumber
+% \end{bmatrix}
+% \end{equation}
+
+\pagebreak
+\textbf{6.} Ermito ir unitarinės matricos. Tenzorinė tiesinių erdvių sandauga. Matricai $A$ iš ankstesnės užduoties raskite:
+
+\begin{enumerate}[label=\alph*)]
+    \item matricą $X$, tokią, kad $AX$ būtų nediagonalinė Ermito matrica;
+    \item matricą $Y$, tokią, kad $AY$ būtų nediagonalinė unitarinė matrica;
+    \item tenzorines sandaugas $Z \otimes A$ ir $A \otimes Z$, kai matrica $Z$ yra:
+    \begin{enumerate}[label=\arabic*.]
+        \item $Z = \begin{bmatrix} -1 & 2i \\ -2i & 1 \end{bmatrix}$,
+    \end{enumerate}
+\end{enumerate}
+
+
+\textbf{a)} Matrica $H$ yra Ermito, jei $H^{\dag} = H$.
+Turime $AX = H$, kur $H$ Ermito. 
+Tada:
+\[
+    (AX)^\dag = X^\dag A^\dag = AX
+\]
+
+\[
+A^T=
+\begin{bmatrix}
+    -1 & 0 & 0 \\
+    0 & -3i & -2 \\
+    0 & 5 & i
+\end{bmatrix}
+\]
+
+\[
+A^\dag=
+\begin{bmatrix}
+    -1 & 0 & 0 \\
+    0 & 3i & -2 \\
+    0 & 5 & -i
+\end{bmatrix}
+\]
+
+\[
+    AA^\dag = 
+    \begin{bmatrix}
+        1 & 0 & 0 \\
+        0 & 34 & i \\
+        0 & -i & 5
+    \end{bmatrix}
+\]
+
+$X=A^\dag$, tada $AX = AA^\dag$ - Ermito, bet reikia patikrinti, ar nediagonalinė.
+
+\hfill \break
+
+Yra Ermito, nes įstrižainės elementai realūs, o $(2,3) = i, (3,2) = -i$. Ji nėra diagonalinė, nes yra nuliniai elementai šalia įstrižainės.
+
+\hfill \break
+
+\textbf{b)}
+Matrica yra unitarinė, jei $U^{\dag}U = I $
+
+\[
+    Jei \quad U= AY, \quad tai \quad U^{\dag}U = Y^{\dag}A^{\dag}AY = I
+\]
+
+Jei $A$ yra invertuojama, galima pasirinkti $Y=A^{-1}U_0$, kur $U_0$ yra unitarinė matrica. Tada:
+
+\begin{equation}
+    AY = A( А^{-1} U_{0}) = U_{0} \nonumber
+\end{equation}
+
+Kad $AY$ būtų nediagonalinė, $U_0$ turi būti nediagonalinė unitarinė matrica.
+
+\begin{equation}
+    det(A) =
+    (-1) \cdot det
+    \begin{bmatrix}
+        -3i & 5 \\
+        -2 & i
+    \end{bmatrix}
+    = -13 \neq 0 \nonumber
+\end{equation}
+
+Vadinasi, $A$ invertuojama.
+
+\begin{equation}
+    A^{-1} =
+    \begin{bmatrix}
+        -1 & 0 & 0 \\
+        0 & \frac{i}{13} & \frac{-5}{13} \\
+        0 & \frac{2}{13} & \frac{-3i}{13} \nonumber
+    \end{bmatrix}
+\end{equation}
+
+
+\begin{equation}
+    U_0 =
+    \begin{bmatrix}
+       0 & 1 & 0 \\
+       0 & 0 & 1 \\
+       1 & 0 & 0 \nonumber
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    Y=A^{-1}U_0 = 
+    \begin{bmatrix}
+        0 & 0 & -1 \\
+        \frac{i}{13} & -\frac{5}{13} & 0 \\
+        \frac{2}{13} & -\frac{3i}{13} & 0 \nonumber
+    \end{bmatrix}
+\end{equation}
+
+
+\textbf{c)}
+\begin{equation}
+    Z \otimes A=
+    \begin{bmatrix} -1 & 2i \\ -2i & 1 \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+-1 & 0 & 0 \\
+0 & -3i & 5 \\
+0 & -2 & i
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 & 0 & 0 & 0 & -2i & 0 \\
+    0 & 3i & -5 & 0 & 6 & 10i \\
+    0 & 2 & -i & 0 & -4i & -2 \\
+    2i & 0 & 0 & -1 & 0 & 0 \\
+    0 & -6 & -10i & 0 & -3i & 5 \\
+    0 & 4i & 2 & 0 & -2 & i \nonumber
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    A \otimes Z=  
+    \begin{bmatrix}
+-1 & 0 & 0 \\
+0 & -3i & 5 \\
+0 & -2 & i
+\end{bmatrix}
+\cdot
+    \begin{bmatrix} -1 & 2i \\ -2i & 1 \end{bmatrix}
+=
+\begin{bmatrix}
+    1 & -2i & 0 & 0 & 0 & 0 \\
+    2i & -1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 3i & -6i & -5 & 10i \\
+    0 & 0 & 6 & -3i & -10i & 5 \\
+    0 & 0 & 2 & -4i & -i & -2 \\
+    0 & 0 & 0 & 4i & -2 & i \nonumber
+\end{bmatrix}
+\end{equation}
+
+\end{document}
+
